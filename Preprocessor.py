@@ -14,9 +14,12 @@ import numpy as np
 
 
 ## uncomment lines below to load navec
-# cwd = os.getcwd()
+
 navec_path = 'navec_pretrained.tar'
-# os.system(f'wget https://storage.yandexcloud.net/natasha-navec/packs/navec_hudlit_v1_12B_500K_300d_100q.tar -O {navec_path}')
+if navec_path not in os.listdir():
+    # cwd = os.getcwd()
+
+    os.system(f'wget https://storage.yandexcloud.net/natasha-navec/packs/navec_hudlit_v1_12B_500K_300d_100q.tar -O {navec_path}')
 
 from navec import Navec
 

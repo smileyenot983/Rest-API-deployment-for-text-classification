@@ -17,7 +17,10 @@ api = Api(app)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(device)
+
 model_path = 'rnn_pretrained.pt'
+
+
 model = RNNModel()
 model.load_state_dict(torch.load(model_path,map_location=device))
 model.to(device)
@@ -29,7 +32,7 @@ class MakePrediction(Resource):
     def post():
         posted_data = request.get_json()
         sentence = posted_data['text']
-        print(f"sentence: {sentence}")
+        # print(f"sentence: {sentence}")
         user_tokens = preproc.prep(sentence)
         encoded_tokens = torch.tensor([preproc.encode(token) for token in user_tokens]).unsqueeze(0).to(device)
 
